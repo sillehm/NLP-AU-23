@@ -3,8 +3,9 @@ from torch import nn
 import torch.nn.functional as F
 import numpy as np
 
-class LSTMModel(nn.Module):
+class LSTMModel(nn.Module): 
     def __init__(self, 
+    ###### three layers - embedding layer, hidden state and fully connected output layer
                 output_dim: int, 
                 embedding_layer: nn.Embedding, 
                 hidden_dim_size: int):
@@ -25,6 +26,8 @@ class LSTMModel(nn.Module):
         self.fc = nn.Linear(hidden_dim_size*2,  # NOTE: remove *2 if not bidirectional
                             output_dim)
 
+
+
     def forward(self, X):
         # input size: batch_size x batch_max_len
         # apply the embedding layer that maps each token to its embedding
@@ -43,8 +46,9 @@ class LSTMModel(nn.Module):
 
         return F.log_softmax(x, dim=1)  # dim: batch_size*batch_max_len x num_tags
         # note: cross-entropy requires log of predictions, hence the log
+        #### this is output of the model #### 
 
-    @staticmethod
+    @staticmethod #
     def loss_fn(outputs, labels):
         """
         Custom loss function. 
@@ -71,4 +75,4 @@ class LSTMModel(nn.Module):
         Function for converting the forward into an array of argmax results.
         """
         f = self.forward(X)
-        return [np.argmax(token.detach().numpy()) for token in f]
+        return [np.argmax(token.detach().numpy()) for token in f] # what is the class that has the highest value
