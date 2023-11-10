@@ -139,4 +139,6 @@ solutions/*
 backups/*
 requirements.txt
 *model.pt
-# 
+
+#Exam playaround 
+exam/
