@@ -10,3 +10,10 @@ gensim
 torch
 seqeval
 transformers
+
+# exam - BERTopic
+sentence_transformers
+bertopic
+umap
+hdbscan
+openai
